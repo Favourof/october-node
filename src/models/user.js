@@ -11,8 +11,8 @@ const userSchema = new mongoose.Schema({
   lastName: {
     type: String,
     trim: true,
-    minLength: [3, "FirstName must be at least 3 Character"],
-    maxLength: [16, "FirstName must can not be greater than 16 Character"],
+    minLength: [3, "lastName must be at least 3 Character"],
+    maxLength: [16, "lastName must can not be greater than 16 Character"],
   },
   email: {
     type: String,
