@@ -1,4 +1,6 @@
 import Product from "../models/product.js";
+import user from "../models/user.js";
+import User from "../models/user.js";
 
 export const addProduct = async (req, res) => {
   try {
@@ -14,19 +16,22 @@ export const addProduct = async (req, res) => {
       price,
       image,
       stock,
+      userId: req.id
     });
 
     return res
       .status(201)
-      .json({ status: true, message: "Product Created Successfully" });
+      .json({ status: true, message: "Product Created Successfully", product });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ status: false, message: error.message });
   }
-};
+};[]
 
 export const getAllProduct = async (req, res) => {
   try {
+  
+    
     const product = await Product.find();
     if (!product) {
       return res
@@ -68,8 +73,9 @@ export const getSingleProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
   try {
     const productId = req.params.id;
-    const product = await Product.findByIdAndDelete(productId);
-
+    const product = await Product.findOneAndDelete({_id:productId, userId: req.id});
+    console.log(req.userId);
+    
     if (!product) {
       return res
         .status(404)
@@ -88,7 +94,7 @@ export const deleteProduct = async (req, res) => {
 export const updateProduct = async (req, res) => {
   try {
     const productId = req.params.id;
-    const product = await Product.findByIdAndUpdate(productId, req.body, {
+    const product = await Product.findOneAndUpdate({_id: productId, userId: req.id}, {$set: req.body}, {
       new: true,
       runValidators: true,
     });
@@ -96,7 +102,7 @@ export const updateProduct = async (req, res) => {
     if (!product) {
       return res
         .status(404)
-        .json({ status: false, message: "Product not Fount" });
+        .json({ status: false, message: "Product not Fount or not unauthorized" });
     }
 
     return res

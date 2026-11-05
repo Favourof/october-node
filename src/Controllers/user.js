@@ -85,3 +85,20 @@ export const login = async (req, res) => {
     return res.status(500).json({ status: false, message: error.message });
   }
 };
+
+export const isAuth = async (req, res)=>{
+  try {
+    const existingUser = await User.findById(req.id)
+  
+    if(!existingUser){
+      return res.status(401).json({status: false, message: "Unauthorized"})
+    }
+
+    return res.status(200).json({status: true, message:"successful", user:userODM(existingUser)})
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({status: false, message: error.message})
+    
+  }
+}

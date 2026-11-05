@@ -32,6 +32,11 @@ const productSchema = new mongoose.Schema({
     min: [1, "stock cannot be less than 1"],
     max: [1000, "stock cannot be Greater than 1000"],
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+    required: true
+  }
 });
 
 const product = mongoose.model("product", productSchema);
