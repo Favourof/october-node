@@ -3,8 +3,14 @@ import user from "../models/user.js";
 import User from "../models/user.js";
 
 export const addProduct = async (req, res) => {
+
+  console.log(req.file);
+  console.log(req.body);
+  const image = req.file.path
+  
+  
   try {
-    const { title, description, price, image, stock } = req.body;
+    const { title, description, price, stock } = req.body;
     if (!title || !description || !price || !image || !stock) {
       return res
         .status(400)
