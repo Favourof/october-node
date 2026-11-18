@@ -3,52 +3,59 @@ import bcrypt from "bcrypt";
 import { userODM } from "../odm/user.js";
 import jwt from "jsonwebtoken";
 import { envConfig } from "../config/envConfig.js";
+import { validationResult } from "express-validator";
 
-export const register = async (req, res) => {
-  const saltRounds = Number(envConfig.bcrypt.saltRounds);
-  try {
-    const { firstName, lastName, email, password } = req.body;
+  export const register = async (req, res) => {
 
-    if (!firstName || !lastName || !email || !password) {
-      return res
-        .status(400)
-        .json({ status: false, message: "All Field are required" });
+    const validate = validationResult(req)
+    if (!validate.isEmpty()) {
+      return res.status(400).json({status: false, message: "validation error", errors: validate.array()?.[0].msg})
     }
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res
-        .status(400)
-        .json({ status: false, message: "Invalid Credentials" });
-    }
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-    console.log(hashedPassword);
+    // console.log(validate);
+    
+    const saltRounds = Number(envConfig.bcrypt.saltRounds);
+    try {
+      const { firstName, lastName, email, password } = req.body;
 
-    const user = await User.create({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
-    });
-    return res.status(201).json({
-      status: true,
-      message: "Account Created Successfully",
-      user: userODM(user),
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ status: false, message: error.message });
-  }
-};
+      // if (!firstName || !lastName || !email || !password) {
+      //   return res
+      //     .status(400)
+      //     .json({ status: false, message: "All Field are required" });
+      // }
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return res
+          .status(400)
+          .json({ status: false, message: "Invalid Credentials" });
+      }
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+      console.log(hashedPassword);
+
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password: hashedPassword,
+      });
+      return res.status(201).json({
+        status: true,
+        message: "Account Created Successfully",
+        user: userODM(user),
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ status: false, message: error.message });
+    }
+  };
 
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (!email || !password) {
-      return res
-        .status(400)
-        .json({ status: false, message: "All Field are required" });
-    }
+      const validate = validationResult(req)
+  if (!validate.isEmpty()) {
+    return res.status(400).json({status: false, message: "validation error", errors: validate.array()?.[0].msg})
+  }
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
       return res
