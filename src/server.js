@@ -12,8 +12,18 @@ server.use(json());
 server.use(cors())
 const port = envConfig.port;
 
+
 server.use("/product", productRoute);
 server.use("/auth", userRoute);
+
+server.get("/", (req, res)=>{
+  res.status(200).send("welcome to october Server")
+})
+
+server.use((req, res)=>{
+  res.status(400).send("Route not Found")
+})
+
 
 connectDB();
 server.listen(port, () => {
