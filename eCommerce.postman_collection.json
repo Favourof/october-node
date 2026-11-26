@@ -1,0 +1,751 @@
+{
+	"info": {
+		"_postman_id": "1a70b787-893f-4c6c-8f0b-6cba6c9282de",
+		"name": "eCommerce",
+		"description": "# eCommerce API\n\nA RESTful API for managing an eCommerce platform. It provides endpoints for user authentication and product management.\n\n## Base URL\nAll requests use the `{{base-url}}` environment variable. Set this in the **octobaer server** environment before making requests.\n\n## Authentication\nProtected endpoints require a Bearer token. To authenticate:\n1. Register a new account via `POST /auth/register`\n2. Log in via `POST /auth/login` to receive a token\n3. Store the token in the `{{token}}` environment variable\n4. The token is automatically applied to all protected requests\n\n## Folders\n- **auth** — User registration, login, and session verification\n- **Product** — Full CRUD operations for products\n\n## Environment Variables\n| Variable | Description |\n|----------|-------------|\n| `{{base-url}}` | The base URL of the API server (e.g. `http://localhost:4000`) |\n| `{{token}}` | Bearer token obtained after login |",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33609178",
+		"_collection_link": "https://www.postman.com/favour-9141/workspace/october-server/collection/33609178-1a70b787-893f-4c6c-8f0b-6cba6c9282de?action=share&source=collection_link&creator=33609178"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get All Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/product/",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"product",
+								""
+							]
+						},
+						"description": "Retrieves a list of all available products in the store.\n\n**Method:** GET\n**URL:** `{{base-url}}/product/`\n**Authentication:** None required\n\n**Success Response (200 OK):**\n```json\n[\n  {\n    \"_id\": \"6aec44be5f8885abacca9fe8\",\n    \"name\": \"Product Name\",\n    \"price\": 29.99,\n    \"description\": \"Product description\",\n    \"category\": \"electronics\"\n  }\n]\n```\n\n**Error Responses:**\n- `500 Internal Server Error` — Server-side issue"
+					},
+					"response": [
+						{
+							"name": "Get All Product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/product/",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"product",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2806"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"af6-ZdOP0lQZbyiIuLIqrPCjtrWOQvg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 19 Nov 2026 09:26:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Fetch Products SuccessFully\",\n    \"product\": [\n        {\n            \"_id\": \"6aeae7ddbc0a5434acb68b34\",\n            \"title\": \"Machine\",\n            \"description\": \"Good Machi\",\n            \"price\": 1000,\n            \"image\": \"https://image.com\",\n            \"stock\": 10,\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6aeae83b5b207d638f0b1e96\",\n            \"title\": \"Machine\",\n            \"description\": \"Good Machi\",\n            \"price\": 1000,\n            \"image\": \"https://image.com\",\n            \"stock\": 10,\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6aeae84c070a70f72b8855be\",\n            \"title\": \"Machine\",\n            \"description\": \"Good Machi\",\n            \"price\": 1000,\n            \"image\": \"https://image.com\",\n            \"stock\": 10,\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6aeae93b3114f3db730c4869\",\n            \"title\": \"Machine\",\n            \"description\": \"Good Machi\",\n            \"price\": 1000,\n            \"image\": \"https://image.com\",\n            \"stock\": 10,\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6aeae9863114f3db730c486a\",\n            \"title\": \"Machine\",\n            \"description\": \"Good Machi\",\n            \"price\": 1000,\n            \"image\": \"https://image.com\",\n            \"stock\": 10,\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6aec3fcba5b72d5aedfe14fb\",\n            \"title\": \"Big Machine\",\n            \"description\": \"very Good Machi\",\n            \"price\": 10000,\n            \"image\": \"https://image.com\",\n            \"stock\": 3,\n            \"userId\": \"6aeaed281487a0d702a4c2da\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6aec3ff9d6b72c6eb1175166\",\n            \"title\": \"Big Machine\",\n            \"description\": \"very Good Machi\",\n            \"price\": 10000,\n            \"image\": \"https://image.com\",\n            \"stock\": 3,\n            \"userId\": \"6aeaed281487a0d702a4c2da\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6aec4745d23be14aff431125\",\n            \"title\": \"Big Bottle water\",\n            \"description\": \"very Good Machi\",\n            \"price\": 10000,\n            \"image\": \"https://image.com\",\n            \"stock\": 3,\n            \"userId\": \"6aeaed281487a0d702a4c2da\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6af438d5abaafd288eb139b8\",\n            \"title\": \"Big Plate\",\n            \"description\": \"very Good Machi\",\n            \"price\": 10000,\n            \"image\": \"uploads/image-1794390229100-658824024.jpg\",\n            \"stock\": 3,\n            \"userId\": \"6aec42cfeefa8019b6d3a0f0\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6af577c72108590d5a812b7c\",\n            \"title\": \"Big Plate\",\n            \"description\": \"very Good Machi\",\n            \"price\": 10000,\n            \"image\": \"https://res.cloudinary.com/dqwkg8qcx/image/upload/v1794471878/october-cohort/zcgzlr4ixikvzufhbdaa.jpg\",\n            \"imageId\": \"october-cohort/zcgzlr4ixikvzufhbdaa\",\n            \"stock\": 3,\n            \"userId\": \"6aec42cfeefa8019b6d3a0f0\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6afebeab699da0ae27323a78\",\n            \"title\": \"Big Plate\",\n            \"description\": \"very Good Machi\",\n            \"price\": 10000,\n            \"image\": \"https://res.cloudinary.com/dqwkg8qcx/image/upload/v1795079851/october-cohort/qygrjzqwgiztc5h6ufsu.jpg\",\n            \"imageId\": \"october-cohort/qygrjzqwgiztc5h6ufsu\",\n            \"stock\": 3,\n            \"userId\": \"6afd74a2942de76d8285fc86\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6afec0b7699da0ae27323a79\",\n            \"title\": \"Big Plate\",\n            \"description\": \"very Good Machi\",\n            \"price\": 10000,\n            \"image\": \"https://res.cloudinary.com/dqwkg8qcx/image/upload/v1795080374/october-cohort/atnmvbnatxcsayqtpovo.jpg\",\n            \"imageId\": \"october-cohort/atnmvbnatxcsayqtpovo\",\n            \"stock\": 3,\n            \"userId\": \"6afd74a2942de76d8285fc86\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6afec0cc699da0ae27323a7a\",\n            \"title\": \"Big Plate\",\n            \"description\": \"very Good Machi\",\n            \"price\": 10000,\n            \"image\": \"https://res.cloudinary.com/dqwkg8qcx/image/upload/v1795080396/october-cohort/wb6hvlkxq8jkfuxpa5vr.jpg\",\n            \"imageId\": \"october-cohort/wb6hvlkxq8jkfuxpa5vr\",\n            \"stock\": 3,\n            \"userId\": \"6afd74a2942de76d8285fc86\",\n            \"__v\": 0\n        }\n    ],\n    \"length\": 13\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/product/6aec44be5f8885abacca9fe8",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"product",
+								"6aec44be5f8885abacca9fe8"
+							]
+						},
+						"description": "Deletes a product from the store by its ID. This action is irreversible. Requires authentication.\n\n**Method:** DELETE\n**URL:** `{{base-url}}/product/:id`\n**Authentication:** Bearer Token — `{{token}}`\n\n**URL Parameters:**\n| Parameter | Type | Description |\n|-----------|------|-------------|\n| id | string | The unique MongoDB ObjectId of the product to delete |\n\n**Example:** `DELETE {{base-url}}/product/6aec44be5f8885abacca9fe8`\n\n**Headers:**\n| Key | Value |\n|-----|-------|\n| Authorization | Bearer {{token}} |\n\n**Success Response (200 OK):**\n```json\n{\n  \"message\": \"Product deleted successfully\"\n}\n```\n\n**Error Responses:**\n- `401 Unauthorized` — Token missing or invalid\n- `404 Not Found` — Product with the given ID does not exist"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Big Plate",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "very Good Machi",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "10000",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/legacy/Downloads/4516076206007-b-marinm_thumbnail.jpg"
+								},
+								{
+									"key": "stock",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/product",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"product"
+							]
+						},
+						"description": "Creates a new product in the store. Requires authentication.\n\n**Method:** POST\n**URL:** `{{base-url}}/product`\n**Authentication:** Bearer Token — `{{token}}`\n\n**Headers:**\n| Key | Value |\n|-----|-------|\n| Authorization | Bearer {{token}} |\n| Content-Type | application/json |\n\n**Request Body (JSON):**\n```json\n{\n  \"name\": \"New Product\",\n  \"price\": 49.99,\n  \"description\": \"A detailed product description\",\n  \"category\": \"electronics\"\n}\n```\n\n**Success Response (201 Created):**\n```json\n{\n  \"_id\": \"...\",\n  \"name\": \"New Product\",\n  \"price\": 49.99,\n  \"description\": \"A detailed product description\",\n  \"category\": \"electronics\"\n}\n```\n\n**Error Responses:**\n- `400 Bad Request` — Missing or invalid fields\n- `401 Unauthorized` — Token missing or invalid"
+					},
+					"response": [
+						{
+							"name": "Add Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Big Plate",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "very Good Machi",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "10000",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/home/legacy/Downloads/4516076206007-b-marinm_thumbnail.jpg"
+										},
+										{
+											"key": "stock",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base-url}}/product",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"product"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "381"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17d-rIdNYRgZ1JVmy+73WuCif/3XvX4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 19 Nov 2026 09:26:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Product Created Successfully\",\n    \"product\": {\n        \"title\": \"Big Plate\",\n        \"description\": \"very Good Machi\",\n        \"price\": 10000,\n        \"image\": \"https://res.cloudinary.com/dqwkg8qcx/image/upload/v1795080374/october-cohort/atnmvbnatxcsayqtpovo.jpg\",\n        \"imageId\": \"october-cohort/atnmvbnatxcsayqtpovo\",\n        \"stock\": 3,\n        \"userId\": \"6afd74a2942de76d8285fc86\",\n        \"_id\": \"6afec0b7699da0ae27323a79\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get Single Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Machine\",\r\n    \"description\":\"Good Machi\",\r\n    \"price\": 1000,\r\n    \"image\": \"https://image.com\",\r\n    \"stock\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/product/6ad88a505cc26b8b6b8d17e4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"product",
+								"6ad88a505cc26b8b6b8d17e4"
+							]
+						},
+						"description": "Retrieves the details of a single product by its unique ID.\n\n**Method:** GET\n**URL:** `{{base-url}}/product/:id`\n**Authentication:** None required\n\n**URL Parameters:**\n| Parameter | Type | Description |\n|-----------|------|-------------|\n| id | string | The unique MongoDB ObjectId of the product |\n\n**Example:** `GET {{base-url}}/product/6ad88a505cc26b8b6b8d17e4`\n\n**Success Response (200 OK):**\n```json\n{\n  \"_id\": \"6ad88a505cc26b8b6b8d17e4\",\n  \"name\": \"Product Name\",\n  \"price\": 29.99,\n  \"description\": \"Product description\",\n  \"category\": \"electronics\"\n}\n```\n\n**Error Responses:**\n- `404 Not Found` — Product with the given ID does not exist\n- `400 Bad Request` — Invalid product ID format"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/product/6ad88a065cc26b8b6b8d17e3",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"product",
+								"6ad88a065cc26b8b6b8d17e3"
+							]
+						},
+						"description": "Deletes a product from the store by its ID. This is a duplicate delete request targeting a specific product. Requires authentication.\n\n**Method:** DELETE\n**URL:** `{{base-url}}/product/:id`\n**Authentication:** Bearer Token — `{{token}}`\n\n**URL Parameters:**\n| Parameter | Type | Description |\n|-----------|------|-------------|\n| id | string | The unique MongoDB ObjectId of the product to delete |\n\n**Example:** `DELETE {{base-url}}/product/6ad88a065cc26b8b6b8d17e3`\n\n**Headers:**\n| Key | Value |\n|-----|-------|\n| Authorization | Bearer {{token}} |\n\n**Success Response (200 OK):**\n```json\n{\n  \"message\": \"Product deleted successfully\"\n}\n```\n\n**Error Responses:**\n- `401 Unauthorized` — Token missing or invalid\n- `404 Not Found` — Product with the given ID does not exist"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Big Bottle water\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/product/6aec4745d23be14aff431125",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"product",
+								"6aec4745d23be14aff431125"
+							]
+						},
+						"description": "Updates the details of an existing product by its ID. Only the fields provided in the request body will be updated. Requires authentication.\n\n**Method:** PUT\n**URL:** `{{base-url}}/product/:id`\n**Authentication:** Bearer Token — `{{token}}`\n\n**URL Parameters:**\n| Parameter | Type | Description |\n|-----------|------|-------------|\n| id | string | The unique MongoDB ObjectId of the product to update |\n\n**Example:** `PUT {{base-url}}/product/6aec4745d23be14aff431125`\n\n**Headers:**\n| Key | Value |\n|-----|-------|\n| Authorization | Bearer {{token}} |\n| Content-Type | application/json |\n\n**Request Body (JSON):**\n```json\n{\n  \"name\": \"Updated Product Name\",\n  \"price\": 59.99,\n  \"description\": \"Updated description\",\n  \"category\": \"home-appliances\"\n}\n```\n\n**Success Response (200 OK):**\n```json\n{\n  \"_id\": \"6aec4745d23be14aff431125\",\n  \"name\": \"Updated Product Name\",\n  \"price\": 59.99,\n  \"description\": \"Updated description\",\n  \"category\": \"home-appliances\"\n}\n```\n\n**Error Responses:**\n- `400 Bad Request` — Invalid fields or ID format\n- `401 Unauthorized` — Token missing or invalid\n- `404 Not Found` — Product not found"
+					},
+					"response": []
+				}
+			],
+			"description": "Contains all product-related endpoints for the eCommerce API. These endpoints allow you to create, retrieve, update, and delete products. Most write operations (POST, PUT, DELETE) require a valid Bearer token passed via the `{{token}}` environment variable."
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Att\",\r\n    \"lastName\":\"Bayo\",\r\n    \"email\": \"tayo37@gmail.com\",\r\n    \"password\": \"12345678Oc\",\r\n    \"role\": \"admin\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/auth/register",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Registers a new user account in the system.\n\n**Method:** POST  \n**URL:** `{{base-url}}/auth/register`  \n**Authentication:** None required\n\n**Request Body (JSON):**\n```json\n{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"yourpassword\"\n}\n```\n\n**Success Response (201 Created):**\n```json\n{\n  \"message\": \"User registered successfully\",\n  \"user\": {\n    \"_id\": \"...\",\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\"\n  }\n}\n```\n\n**Error Responses:**\n- `400 Bad Request` — Missing or invalid fields\n- `409 Conflict` — Email already in use"
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Att\",\r\n    \"lastName\":\"Bayo\",\r\n    \"email\": \"tuayo37@gmail.com\",\r\n    \"password\": \"12345678Oc\",\r\n    \"role\": \"admin\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/auth/register",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "129"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"81-zTrJK+/9CNlH3urN3dLBY8SDdV4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 19 Nov 2026 09:27:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Account Created Successfully\",\n    \"user\": {\n        \"firstName\": \"Att\",\n        \"lastName\": \"Bayo\",\n        \"email\": \"tuayo37@gmail.com\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.environment.set(\"token\", response.token);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n       \"email\": \"kayo37@gmail.com\",\r\n    \"password\": \"12345678Oc\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Authenticates an existing user and returns a Bearer token for use in subsequent protected requests. Store the returned token in the `{{token}}` environment variable.\n\n**Method:** POST  \n**URL:** `{{base-url}}/auth/login`  \n**Authentication:** None required\n\n**Request Body (JSON):**\n```json\n{\n  \"email\": \"john@example.com\",\n  \"password\": \"yourpassword\"\n}\n```\n\n**Success Response (200 OK):**\n```json\n{\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n  \"user\": {\n    \"_id\": \"...\",\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\"\n  }\n}\n```\n\n**Error Responses:**\n- `400 Bad Request` — Missing credentials\n- `401 Unauthorized` — Invalid email or password"
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n       \"email\": \"kayo37@gmail.com\",\r\n    \"password\": \"12345678Oc\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "302"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12e-0+Db560YIKQVCP3bOVTOeMUNyk8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 19 Nov 2026 09:27:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Login Successfully\",\n    \"user\": {\n        \"firstName\": \"Att\",\n        \"lastName\": \"Bayo\",\n        \"email\": \"kayo37@gmail.com\"\n    },\n    \"token\": \"{{json_web_token}}\"\n}"
+						}
+					]
+				},
+				{
+					"name": "isAuth",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/auth/me",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						},
+						"description": "Verifies whether the current user is authenticated by validating the Bearer token. Use this endpoint to check session validity or retrieve the currently logged-in user's profile.\n\n**Method:** GET  \n**URL:** `{{base-url}}/auth/me`  \n**Authentication:** Bearer Token — `{{token}}`\n\n**Headers:**\n| Key | Value |\n|-----|-------|\n| Authorization | Bearer {{token}} |\n\n**Success Response (200 OK):**\n```json\n{\n  \"_id\": \"...\",\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}\n```\n\n**Error Responses:**\n- `401 Unauthorized` — Token missing or invalid\n- `403 Forbidden` — Token expired"
+					},
+					"response": [
+						{
+							"name": "isAuth",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base-url}}/auth/me",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6e-6153dFPeay1ttNwo8EFV/VbLIfM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 19 Nov 2026 09:27:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"successful\",\n    \"user\": {\n        \"firstName\": \"Att\",\n        \"lastName\": \"Bayo\",\n        \"email\": \"kayo37@gmail.com\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "Contains all authentication-related endpoints for the eCommerce API. These endpoints handle user registration, login, and verifying authentication status. Most protected routes in this API require a Bearer token obtained from the Login endpoint, stored as the `{{token}}` variable."
+		},
+		{
+			"name": "welcome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Big Bottle water\"\r\n   \r\n}"
+				},
+				"url": {
+					"raw": "{{base-url}}",
+					"host": [
+						"{{base-url}}"
+					]
+				},
+				"description": "A health-check endpoint that confirms the API server is running and reachable.\n\n**Method:** GET\n**URL:** `{{base-url}}`\n**Authentication:** None required\n\n**Success Response (200 OK):**\n```json\n{\n  \"message\": \"Welcome to the eCommerce API\"\n}\n```\n\n**Use this endpoint to:**\n- Verify the server is online before making other requests\n- Confirm the `{{base-url}}` environment variable is correctly configured\n\n**Error Responses:**\n- `503 Service Unavailable` — Server is down or unreachable"
+			},
+			"response": [
+				{
+					"name": "welcome",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Big Bottle water\"\r\n   \r\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}",
+							"host": [
+								"{{base-url}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "25"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"19-Wf9HE1yD3UEsnJn5TZPBF8He3Wg\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 19 Nov 2026 09:28:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "welcome to october Server"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
